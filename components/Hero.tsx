@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Download } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import Link from "next/link";
 
@@ -54,6 +54,14 @@ export default function Hero() {
             >
               View Projects
             </Link>
+            <a
+              href="/resume.pdf"
+              download
+              className="px-8 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/80 transition-colors flex items-center gap-2"
+            >
+              <Download className="h-5 w-5" />
+              Download Resume
+            </a>
             <Link
               href="#contact"
               className="px-8 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/80 transition-colors"
