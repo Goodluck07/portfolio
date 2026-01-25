@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Mail, Send, Github, Linkedin } from "lucide-react";
 import { personalInfo } from "@/lib/data";
@@ -25,8 +24,7 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      // Replace with your Formspree endpoint
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const response = await fetch("https://formspree.io/f/xojezyaz", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
