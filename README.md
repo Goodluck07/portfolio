@@ -1,36 +1,163 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Goodluck Badewole - Portfolio
+
+A modern, professional portfolio website showcasing my work experience, projects, and skills.
+
+## Features
+
+- **Modern Tech Stack**: Built with Next.js 16, TypeScript, and Tailwind CSS v4
+- **Dark Mode**: Fully functional dark/light theme toggle with system preference detection
+- **Responsive Design**: Mobile-first approach, works seamlessly on all devices
+- **Smooth Animations**: Professional animations using Framer Motion
+- **Interactive Sections**:
+  - Hero with social links
+  - About section with affiliations
+  - Education with honors and awards
+  - Work experience timeline
+  - Featured projects with tech stacks
+  - Technical skills categorized by type
+  - Leadership and activities
+  - Contact form
+  - Footer with quick links
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ installed
+- npm or yarn
+
+### Installation
+
+1. Clone the repository (or it's already set up locally)
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Customization
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Contact Form Setup
 
-## Learn More
+The contact form in `components/Contact.tsx` is ready to use with Formspree:
 
-To learn more about Next.js, take a look at the following resources:
+1. Go to [https://formspree.io](https://formspree.io) and sign up
+2. Create a new form
+3. Copy your form endpoint
+4. Replace `YOUR_FORM_ID` in `components/Contact.tsx`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```typescript
+const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Updating Content
 
-## Deploy on Vercel
+All portfolio content is centralized in `lib/data.ts`. Update this file to modify:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Personal information
+- Education details
+- Work experience
+- Projects
+- Skills
+- Leadership activities
+- Professional affiliations
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Styling
+
+- Colors and theme variables are in `app/globals.css`
+- Modify the CSS variables to change the color scheme
+- Dark mode colors are defined in the `.dark` class
+
+## Deployment to Vercel
+
+1. Push your code to GitHub:
+
+```bash
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git branch -M main
+git push -u origin main
+```
+
+2. Go to [https://vercel.com](https://vercel.com)
+3. Sign in with GitHub
+4. Click "New Project"
+5. Import your repository
+6. Vercel will auto-detect Next.js and configure settings
+7. Click "Deploy"
+
+Your portfolio will be live at `https://your-project-name.vercel.app`
+
+### Custom Domain (Optional)
+
+1. In Vercel project settings, go to "Domains"
+2. Add your custom domain
+3. Follow Vercel's instructions to update DNS records
+
+## Project Structure
+
+```
+my-portfolio/
+├── app/
+│   ├── layout.tsx      # Root layout with theme provider
+│   ├── page.tsx        # Main landing page
+│   └── globals.css     # Global styles and theme
+├── components/
+│   ├── Navigation.tsx  # Navbar with smooth scroll
+│   ├── Hero.tsx        # Landing section
+│   ├── About.tsx       # About section
+│   ├── Education.tsx   # Education details
+│   ├── Experience.tsx  # Work experience
+│   ├── Projects.tsx    # Featured projects
+│   ├── Skills.tsx      # Technical skills
+│   ├── Leadership.tsx  # Leadership activities
+│   ├── Contact.tsx     # Contact form
+│   ├── Footer.tsx      # Footer
+│   └── ThemeToggle.tsx # Dark mode toggle
+├── lib/
+│   └── data.ts         # Portfolio content
+└── public/             # Static assets
+```
+
+## Technologies Used
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **Dark Mode**: next-themes
+- **Icons**: Lucide React
+- **Deployment**: Vercel
+
+## Development Commands
+
+```bash
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Lint code
+npm run lint
+```
+
+## License
+
+This project is open source and available for personal use.
+
+## Contact
+
+- **Email**: badewolegoodluck55@gmail.com
+- **LinkedIn**: [linkedin.com/in/goodluck-badewole](https://linkedin.com/in/goodluck-badewole)
+- **GitHub**: [github.com/Goodluck07](https://github.com/Goodluck07)
