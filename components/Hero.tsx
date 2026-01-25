@@ -55,7 +55,7 @@ export default function Hero() {
               View Projects
             </Link>
             <a
-              href="/resume.pdf"
+              href="/resume/Goodluck_Badewole_resume.pdf"
               download
               className="px-8 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/80 transition-colors flex items-center gap-2"
             >
