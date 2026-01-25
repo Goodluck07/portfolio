@@ -98,6 +98,53 @@ export const projects = [
     github: "",
   },
   {
+    title: "Pantry Manager Web-App",
+    description: "Developed and deployed a dynamic pantry management web application using React, Firebase, and Next.js, enabling users to efficiently track and manage food items",
+    techStack: ["React", "Firebase", "Next.js"],
+    highlights: [
+      "Enhanced user experience by implementing persistent authentication and real-time data updates, resulting in a 30% increase in user retention and 10% increase in food management",
+    ],
+    github: "",
+  },
+  {
+    title: "Expense Tracker App",
+    description: "Developed a comprehensive expense tracker application using Python and Tkinter, enabling users to efficiently log, categorize, and visualize their financial data",
+    techStack: ["Python", "Tkinter", "Matplotlib", "CSV"],
+    highlights: [
+      "Implemented robust features such as expense plotting with Matplotlib and CSV-based data management, ensuring seamless data storage and retrieval",
+      "Improved finance management for users, with an increase in user satisfaction and a 30% reduction in time spent on financial tracking",
+    ],
+    github: "",
+  },
+  {
+    title: "Sales Insights for Consumer Business",
+    description: "Built a sales insight solution that helps bring data informed decision-making using Python that connected with MySQL to get required sales data to perform exploratory data analysis",
+    techStack: ["Python", "MySQL", "NumPy", "Pandas", "PowerBI"],
+    highlights: [
+      "Data Cleaning and transformation was done using NumPy and Pandas. For data visualization, PowerBI was used",
+      "Enabled data-informed decision-making, resulting in a 20% increase in sales efficiency and a 15% reduction in data processing time",
+    ],
+    github: "",
+  },
+  {
+    title: "Chatbot with Website Integration",
+    description: "Engineered a chatbot using Python and Rasa and integrated it into a website using Flask",
+    techStack: ["Python", "Rasa", "Flask"],
+    highlights: [
+      "Improved user interaction by 40%, reducing response time by 30% and increasing user engagement by 25%",
+    ],
+    github: "",
+  },
+  {
+    title: "INSPIRE Research Program",
+    description: "Utilized MATLAB codes and the theory of DMD to analyze and interpret data related to hurricane formation patterns",
+    techStack: ["MATLAB", "DMD", "Data Analysis"],
+    highlights: [
+      "Contributed to predictive modeling efforts, enhancing forecast accuracy by 15% and providing insights into weather patterns",
+    ],
+    github: "",
+  },
+  {
     title: "Flashcard Web-App",
     description: "Developed and deployed a flashcard management web application using React, Firebase, and Next.js, allowing users to create, save, and search flashcards instantly",
     techStack: ["React", "Firebase", "Next.js", "OpenAI"],
@@ -118,6 +165,7 @@ export const skills = {
     "TypeScript",
     "SQL",
     "HTML/CSS",
+    "MATLAB",
   ],
   frameworks: [
     "React",
@@ -128,6 +176,9 @@ export const skills = {
     "Pandas",
     "NumPy",
     "Unity",
+    "Rasa",
+    "Tkinter",
+    "Matplotlib",
   ],
   tools: [
     "Docker",
@@ -138,10 +189,12 @@ export const skills = {
     "Pinecone",
     "Redis",
     "PostgreSQL",
+    "MySQL",
     "Linux",
     "CI/CD",
     "Supabase",
     "Grafana",
+    "PowerBI",
   ],
 };
 
