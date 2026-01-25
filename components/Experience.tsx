@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Briefcase, MapPin, Calendar } from "lucide-react";
+import Image from "next/image";
+import { MapPin, Calendar } from "lucide-react";
 import { workExperience } from "@/lib/data";
 
 export default function Experience() {
@@ -41,8 +41,13 @@ export default function Experience() {
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6">
                   <div className="flex items-start gap-4 mb-4 sm:mb-0">
-                    <div className="p-3 bg-primary/10 rounded-lg">
-                      <Briefcase className="h-6 w-6 text-primary" />
+                    <div className="relative w-16 h-16 flex-shrink-0 bg-white rounded-lg p-2 shadow-sm border border-border">
+                      <Image
+                        src={job.logo}
+                        alt={`${job.company} logo`}
+                        fill
+                        className="object-contain p-1"
+                      />
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold text-foreground mb-1">

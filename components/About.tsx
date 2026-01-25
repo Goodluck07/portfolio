@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import { personalInfo, affiliations } from "@/lib/data";
 
 export default function About() {
@@ -26,36 +26,58 @@ export default function About() {
           </h2>
 
           <div className="bg-card rounded-lg p-8 shadow-sm border border-border">
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I&apos;m a Computer Science student at Alabama A&M University with
-              a 4.0 GPA, passionate about building scalable software solutions.
-              I have hands-on experience from internships at{" "}
-              <span className="text-primary font-semibold">Splunk (Cisco)</span>{" "}
-              and{" "}
-              <span className="text-primary font-semibold">Activision</span>,
-              where I worked on backend infrastructure and game development.
-            </p>
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="flex-shrink-0 mx-auto md:mx-0">
+                <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
+                  <Image
+                    src="/images/profile.png"
+                    alt={personalInfo.name}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              My expertise spans across full-stack development, distributed
-              systems, and AI/ML applications. I&apos;m proficient in Go,
-              Python, TypeScript, React, and cloud technologies. I love solving
-              complex problems and building systems that make a real impact.
-            </p>
-
-            <div className="mt-8">
-              <h3 className="text-xl font-semibold text-foreground mb-4">
-                Professional Affiliations
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {affiliations.map((affiliation) => (
-                  <span
-                    key={affiliation}
-                    className="px-4 py-2 bg-secondary text-secondary-foreground rounded-full text-sm font-medium"
-                  >
-                    {affiliation}
+              <div className="flex-1">
+                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                  I&apos;m a Computer Science student at Alabama A&M University
+                  with a 4.0 GPA, passionate about building scalable software
+                  solutions. I have hands-on experience from internships at{" "}
+                  <span className="text-primary font-semibold">
+                    Splunk (Cisco)
+                  </span>{" "}
+                  and{" "}
+                  <span className="text-primary font-semibold">
+                    Activision
                   </span>
-                ))}
+                  , where I worked on backend infrastructure and game
+                  development.
+                </p>
+
+                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                  My expertise spans across full-stack development, distributed
+                  systems, and AI/ML applications. I&apos;m proficient in Go,
+                  Python, TypeScript, React, and cloud technologies. I love
+                  solving complex problems and building systems that make a real
+                  impact.
+                </p>
+
+                <div className="mt-8">
+                  <h3 className="text-xl font-semibold text-foreground mb-4">
+                    Professional Affiliations
+                  </h3>
+                  <div className="flex flex-wrap gap-3">
+                    {affiliations.map((affiliation) => (
+                      <span
+                        key={affiliation}
+                        className="px-4 py-2 bg-secondary text-secondary-foreground rounded-full text-sm font-medium"
+                      >
+                        {affiliation}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

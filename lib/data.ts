@@ -29,6 +29,7 @@ export const workExperience = [
     role: "Software Engineer Intern – Backend/Infrastructure",
     location: "Boulder, CO",
     period: "May 2025 – Aug 2025",
+    logo: "/images/splunk-logo.png",
     achievements: [
       "Led implementation of Slack threading in the Release Train Engine (RTE) team, reducing daily slack message volume by 63% during stack group/cohorts maintenance windows",
       "Enhanced Kubernetes CRDs and Go-based controllers to store Slack thread IDs in resource status field, enabling easy message tracking",
@@ -41,6 +42,7 @@ export const workExperience = [
     role: "Game Development Intern",
     location: "Los Angeles, CA",
     period: "May 2024 – July 2024",
+    logo: "/images/activision-logo.png",
     achievements: [
       "Selected for competitive game development program alongside 20+ industry professionals from major studios including Activision and Riot Games",
       "Developed a city-building simulation game using Unity and C#, implementing core game systems including resource management, and AI-driven NPC behavior",
