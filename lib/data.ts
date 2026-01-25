@@ -25,6 +25,19 @@ export const education = {
 
 export const workExperience = [
   {
+    company: "Innovation Portal",
+    role: "Software Engineer Intern – Full Stack",
+    location: "Remote",
+    period: "Jan 2026 – Apr 2026",
+    logo: "/images/innovation-portal-logo.png",
+    achievements: [
+      "Building ChessBlindspots, an AI-powered chess coach that analyzes chess.com/Lichess games to identify tactical weaknesses and generate personalized practice puzzles",
+      "Architecting full-stack application using React, TypeScript, Stockfish chess engine, and Claude AI for pattern categorization",
+      "Implementing zero-friction UX with no login required and 30-second game analysis using browser localStorage for persistence",
+      "Developing data visualization features using Recharts/D3.js to display tactical weakness patterns and improvement metrics",
+    ],
+  },
+  {
     company: "Splunk (Cisco)",
     role: "Software Engineer Intern – Backend/Infrastructure",
     location: "Boulder, CO",
