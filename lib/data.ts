@@ -74,7 +74,7 @@ export const projects = [
       "Developed dynamic opportunities pages with real-time status updates, and calendar integration",
       "Integrated frontend with Supabase APIs for authentication, CRUD operations, and role-based access control",
     ],
-    github: "",
+    github: "https://github.com/GDG-AAMU/GDG_Opp_hub",
   },
   {
     title: "Personal AI Knowledge Assistant",
@@ -117,7 +117,7 @@ export const projects = [
     highlights: [
       "Enhanced user experience by implementing persistent authentication and real-time data updates, resulting in a 30% increase in user retention and 10% increase in food management",
     ],
-    github: "",
+    github: "https://github.com/Goodluck07/GBPantryManager",
   },
   {
     title: "Expense Tracker App",
@@ -127,7 +127,7 @@ export const projects = [
       "Implemented robust features such as expense plotting with Matplotlib and CSV-based data management, ensuring seamless data storage and retrieval",
       "Improved finance management for users, with an increase in user satisfaction and a 30% reduction in time spent on financial tracking",
     ],
-    github: "",
+    github: "https://github.com/Goodluck07/ExpenseTracker",
   },
   {
     title: "Sales Insights for Consumer Business",
@@ -146,7 +146,7 @@ export const projects = [
     highlights: [
       "Improved user interaction by 40%, reducing response time by 30% and increasing user engagement by 25%",
     ],
-    github: "",
+    github: "https://github.com/Goodluck07/LuckyChatAi",
   },
   {
     title: "INSPIRE Research Program",
@@ -164,7 +164,7 @@ export const projects = [
     highlights: [
       "Improved user engagement by incorporating real-time data synchronization and personalized authentication, leading to enhanced learning experiences and streamlined flashcard organization",
     ],
-    github: "",
+    github: "https://github.com/Goodluck07/GVTCrads",
   },
 ];
 
