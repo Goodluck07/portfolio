@@ -4,13 +4,17 @@ import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { Code2, Github, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/lib/data";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const router = useRouter();
 
-  // Auto-scroll with requestAnimationFrame
+  // Duplicate projects for seamless loop
+  const loopedProjects = [...projects, ...projects];
+
+  // Auto-scroll with requestAnimationFrame - seamless loop
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -24,11 +28,13 @@ export default function Projects() {
       lastTime = currentTime;
 
       if (!isPaused) {
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        const newScroll = container.scrollLeft + (delta / 1000) * 100; // 100px per second
+        // Half of scroll width = one full set of projects
+        const halfScroll = container.scrollWidth / 2;
+        const newScroll = container.scrollLeft + (delta / 1000) * 120;
 
-        if (newScroll >= maxScroll) {
-          container.scrollLeft = 0;
+        // When we've scrolled past the first set, jump back to start seamlessly
+        if (newScroll >= halfScroll) {
+          container.scrollLeft = newScroll - halfScroll;
         } else {
           container.scrollLeft = newScroll;
         }
@@ -106,61 +112,65 @@ export default function Projects() {
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
         >
-          {projects.map((project) => (
+          {loopedProjects.map((project, index) => (
             <div
-              key={project.slug}
+              key={`${project.slug}-${index}`}
               className="flex-shrink-0 w-[320px] sm:w-[360px]"
             >
-              <Link href={`/projects/${project.slug}`} className="block h-full group">
-                <div className="bg-background rounded-xl p-5 shadow-sm border border-border hover:shadow-xl hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="p-2.5 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                      <Code2 className="h-5 w-5 text-primary" />
-                    </div>
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 hover:bg-secondary rounded-lg transition-colors"
-                        aria-label="View on GitHub"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Github className="h-4 w-4 text-muted-foreground hover:text-primary" />
-                      </a>
-                    )}
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => router.push(`/projects/${project.slug}`)}
+                onKeyDown={(e) => e.key === "Enter" && router.push(`/projects/${project.slug}`)}
+                className="bg-background rounded-xl p-5 shadow-sm border border-border hover:shadow-xl hover:border-primary/50 transition-all duration-300 h-full flex flex-col cursor-pointer group"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="p-2.5 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                    <Code2 className="h-5 w-5 text-primary" />
                   </div>
-
-                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-muted-foreground mb-3 leading-relaxed text-sm line-clamp-2 flex-grow">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {project.techStack.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-0.5 bg-secondary text-secondary-foreground rounded-full text-xs"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.techStack.length > 3 && (
-                      <span className="px-2 py-0.5 bg-secondary text-secondary-foreground rounded-full text-xs">
-                        +{project.techStack.length - 3}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all mt-auto">
-                    <span>Learn more</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </div>
+                  {project.github && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(project.github, "_blank");
+                      }}
+                      className="p-2 hover:bg-secondary rounded-lg transition-colors"
+                      aria-label="View on GitHub"
+                    >
+                      <Github className="h-4 w-4 text-muted-foreground hover:text-primary" />
+                    </button>
+                  )}
                 </div>
-              </Link>
+
+                <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+
+                <p className="text-muted-foreground mb-3 leading-relaxed text-sm line-clamp-2 flex-grow">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {project.techStack.slice(0, 3).map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-0.5 bg-secondary text-secondary-foreground rounded-full text-xs"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {project.techStack.length > 3 && (
+                    <span className="px-2 py-0.5 bg-secondary text-secondary-foreground rounded-full text-xs">
+                      +{project.techStack.length - 3}
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all mt-auto">
+                  <span>Learn more</span>
+                  <ArrowRight className="h-4 w-4" />
+                </div>
+              </div>
             </div>
           ))}
         </div>
