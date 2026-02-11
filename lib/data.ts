@@ -26,6 +26,7 @@ export const education = {
 export const workExperience = [
   {
     company: "Innovation Portal",
+    slug: "innovation-portal",
     role: "Software Engineer Intern – Full Stack",
     location: "Remote",
     period: "Jan 2026 – Apr 2026",
@@ -36,9 +37,24 @@ export const workExperience = [
       "Implementing zero-friction UX with no login required and 30-second game analysis using browser localStorage for persistence",
       "Developing data visualization features using Recharts/D3.js to display tactical weakness patterns and improvement metrics",
     ],
+    story: {
+      overview: "At Innovation Portal, I'm building ChessBlindspots - an AI-powered chess coach that helps players identify and improve their tactical weaknesses. This project combines my passion for chess with cutting-edge AI technology.",
+      challenge: "Chess players often struggle to identify patterns in their mistakes. Traditional chess analysis tools show what went wrong in individual games, but they don't help players understand their recurring weaknesses or provide targeted practice.",
+      approach: "I'm architecting a full-stack solution that analyzes a player's game history from chess.com or Lichess, uses the Stockfish engine to identify tactical errors, and leverages Claude AI to categorize these mistakes into learnable patterns. The app then generates personalized puzzles that target the player's specific weaknesses.",
+      impact: "The zero-friction UX (no login required, 30-second analysis) makes improvement accessible to casual players. Early testing shows players can identify their top 3 tactical weaknesses within minutes of using the tool.",
+      techDetails: [
+        "React + TypeScript for a responsive, type-safe frontend",
+        "Stockfish WASM for browser-based chess analysis",
+        "Claude AI for intelligent pattern categorization",
+        "Recharts/D3.js for visualizing weakness patterns over time",
+        "Browser localStorage for persistence without requiring user accounts",
+      ],
+      learnings: "This internship taught me the importance of user-centric design. By removing friction (no login, fast analysis), we dramatically increased user engagement. I also deepened my understanding of integrating AI models into production applications.",
+    },
   },
   {
     company: "Splunk (Cisco)",
+    slug: "splunk",
     role: "Software Engineer Intern – Backend/Infrastructure",
     location: "Boulder, CO",
     period: "May 2025 – Aug 2025",
@@ -49,9 +65,24 @@ export const workExperience = [
       "Developed automatic tagging of TechOps and on-call Release Train Engineers in critical slack messages, accelerating identification of faulty stacks by 78% during cohorts upgrade operations",
       "Built and tested threading features locally using Docker and Kind clusters, simulating production-like environments for debugging",
     ],
+    story: {
+      overview: "At Splunk (Cisco), I worked on the Release Train Engine (RTE) team, improving the infrastructure that manages Splunk Cloud deployments. My main project focused on enhancing Slack communication during critical maintenance operations.",
+      challenge: "During stack group and cohort maintenance windows, the RTE system generated hundreds of Slack messages daily. This created noise that made it difficult for engineers to track important updates and identify issues quickly. Critical alerts were getting lost in the flood of messages.",
+      approach: "I led the implementation of Slack threading functionality. This required enhancing Kubernetes Custom Resource Definitions (CRDs) to store Slack thread IDs in resource status fields, and modifying Go-based controllers to use these threads for related messages. I also implemented automatic tagging of TechOps and on-call engineers for critical alerts.",
+      impact: "The threading implementation reduced daily Slack message volume by 63%, making channels significantly more manageable. The automatic tagging feature accelerated identification of faulty stacks by 78%, as the right people were immediately notified of issues.",
+      techDetails: [
+        "Go for Kubernetes controller development",
+        "Kubernetes CRDs for custom resource management",
+        "Slack API integration for threading and mentions",
+        "Docker and Kind clusters for local testing",
+        "CI/CD pipelines for deployment automation",
+      ],
+      learnings: "This internship gave me deep experience with Kubernetes internals and production infrastructure at scale. I learned how small improvements in communication systems can have massive impacts on engineering productivity. Working on infrastructure used by thousands of engineers taught me the importance of thorough testing and gradual rollouts.",
+    },
   },
   {
     company: "Activision",
+    slug: "activision",
     role: "Game Development Intern",
     location: "Los Angeles, CA",
     period: "May 2024 – July 2024",
@@ -61,6 +92,20 @@ export const workExperience = [
       "Developed a city-building simulation game using Unity and C#, implementing core game systems including resource management, and AI-driven NPC behavior",
       "Designed and prototyped gameplay mechanics focused on community development and cultural storytelling, achieving 85% positive feedback from peer tester and industry mentors",
     ],
+    story: {
+      overview: "I was selected for Activision's competitive game development program, working alongside 20+ industry professionals from major studios including Activision and Riot Games. This was an incredible opportunity to learn game development from the best in the industry.",
+      challenge: "The program challenged us to design and build a complete game from scratch in a limited timeframe. I chose to create a city-building simulation that could tell meaningful stories about community development while being engaging to play.",
+      approach: "Using Unity and C#, I developed core game systems including resource management, building placement, and AI-driven NPC behavior. The NPCs would interact with the city based on the resources available and buildings constructed, creating emergent storytelling moments. I focused on cultural storytelling elements that highlighted community growth and cooperation.",
+      impact: "The game received 85% positive feedback from peer testers and industry mentors. The mentors particularly praised the NPC behavior system and the way the game mechanics reinforced the themes of community building.",
+      techDetails: [
+        "Unity game engine for development",
+        "C# for game logic and systems",
+        "AI behavior trees for NPC decision-making",
+        "Custom resource management system",
+        "Procedural event generation for storytelling",
+      ],
+      learnings: "This program transformed my understanding of game development. I learned that great games aren't just about fun mechanics - they're about creating experiences that resonate with players. Working with industry professionals taught me professional development practices and the importance of iteration based on playtesting feedback.",
+    },
   },
 ];
 
