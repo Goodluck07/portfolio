@@ -112,6 +112,7 @@ export const workExperience = [
 export const projects = [
   {
     title: "GDG Opportunities Hub",
+    slug: "gdg-opportunities-hub",
     description: "Collaborated with a team of 8 developers to build and deploy a full-stack web application helping 100+ students discover and track internships, scholarships, and job",
     techStack: ["TypeScript", "React", "Next.js", "Supabase", "TanStack Query"],
     highlights: [
@@ -120,52 +121,46 @@ export const projects = [
       "Integrated frontend with Supabase APIs for authentication, CRUD operations, and role-based access control",
     ],
     github: "https://github.com/GDG-AAMU/GDG_Opp_hub",
+    image: "",
   },
   {
     title: "Personal AI Knowledge Assistant",
+    slug: "ai-knowledge-assistant",
     description: "Built a full-stack RAG application enabling users to upload, index, and semantically search through personal documents using vector embeddings and LLM integration",
-    techStack: [
-      "Python",
-      "TypeScript",
-      "React",
-      "AWS Bedrock",
-      "Pinecone",
-      "LangChain",
-    ],
+    techStack: ["Python", "TypeScript", "React", "AWS Bedrock", "Pinecone", "LangChain"],
     highlights: [
       "Implemented document processing pipeline handling 1000+ PDFs, text files, and markdown documents with automatic chunking, embedding generation using AWS Bedrock, and storage in Pinecone vector database",
       "Developed conversational interface using LangChain for context-aware responses, achieving sub-second query latency and 90%+ answer relevance through optimized retrieval mechanisms",
     ],
     github: "",
+    image: "",
   },
   {
     title: "Distributed Task Scheduler",
+    slug: "distributed-task-scheduler",
     description: "Architected and deployed a fault-tolerant distributed job queue system using Go microservices, Redis for job persistence, and Kubernetes for container orchestration, handling 10,000+ tasks per minute",
-    techStack: [
-      "Go",
-      "Python",
-      "Docker",
-      "Kubernetes",
-      "Redis",
-      "PostgreSQL",
-    ],
+    techStack: ["Go", "Python", "Docker", "Kubernetes", "Redis", "PostgreSQL"],
     highlights: [
       "Implemented priority-based scheduling with automatic retry logic, dead letter queues, and exponential backoffs, achieving 87% task completion rate and reducing failed job recovery time by 85%",
       "Built monitoring dashboard with real time metrics using Prometheus and Grafana, providing visibility into queue depth, worker health and task latency across distributed workers",
     ],
     github: "",
+    image: "",
   },
   {
     title: "Pantry Manager Web-App",
+    slug: "pantry-manager",
     description: "Developed and deployed a dynamic pantry management web application using React, Firebase, and Next.js, enabling users to efficiently track and manage food items",
     techStack: ["React", "Firebase", "Next.js"],
     highlights: [
       "Enhanced user experience by implementing persistent authentication and real-time data updates, resulting in a 30% increase in user retention and 10% increase in food management",
     ],
     github: "https://github.com/Goodluck07/GBPantryManager",
+    image: "",
   },
   {
     title: "Expense Tracker App",
+    slug: "expense-tracker",
     description: "Developed a comprehensive expense tracker application using Python and Tkinter, enabling users to efficiently log, categorize, and visualize their financial data",
     techStack: ["Python", "Tkinter", "Matplotlib", "CSV"],
     highlights: [
@@ -173,9 +168,11 @@ export const projects = [
       "Improved finance management for users, with an increase in user satisfaction and a 30% reduction in time spent on financial tracking",
     ],
     github: "https://github.com/Goodluck07/ExpenseTracker",
+    image: "",
   },
   {
     title: "Sales Insights for Consumer Business",
+    slug: "sales-insights",
     description: "Built a sales insight solution that helps bring data informed decision-making using Python that connected with MySQL to get required sales data to perform exploratory data analysis",
     techStack: ["Python", "MySQL", "NumPy", "Pandas", "PowerBI"],
     highlights: [
@@ -183,33 +180,40 @@ export const projects = [
       "Enabled data-informed decision-making, resulting in a 20% increase in sales efficiency and a 15% reduction in data processing time",
     ],
     github: "",
+    image: "",
   },
   {
     title: "Chatbot with Website Integration",
+    slug: "chatbot-website",
     description: "Engineered a chatbot using Python and Rasa and integrated it into a website using Flask",
     techStack: ["Python", "Rasa", "Flask"],
     highlights: [
       "Improved user interaction by 40%, reducing response time by 30% and increasing user engagement by 25%",
     ],
     github: "https://github.com/Goodluck07/LuckyChatAi",
+    image: "",
   },
   {
     title: "INSPIRE Research Program",
+    slug: "inspire-research",
     description: "Utilized MATLAB codes and the theory of DMD to analyze and interpret data related to hurricane formation patterns",
     techStack: ["MATLAB", "DMD", "Data Analysis"],
     highlights: [
       "Contributed to predictive modeling efforts, enhancing forecast accuracy by 15% and providing insights into weather patterns",
     ],
     github: "",
+    image: "",
   },
   {
     title: "Flashcard Web-App",
+    slug: "flashcard-app",
     description: "Developed and deployed a flashcard management web application using React, Firebase, and Next.js, allowing users to create, save, and search flashcards instantly",
     techStack: ["React", "Firebase", "Next.js", "OpenAI"],
     highlights: [
       "Improved user engagement by incorporating real-time data synchronization and personalized authentication, leading to enhanced learning experiences and streamlined flashcard organization",
     ],
     github: "https://github.com/Goodluck07/GVTCrads",
+    image: "",
   },
 ];
 
