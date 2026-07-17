@@ -83,26 +83,6 @@ body {
   color: var(--primary);
 }
 
-/* Smooth infinite carousel animation */
-@keyframes carouselScroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-33.333%);
-  }
-}
-
-.carousel-animate {
-  animation: carouselScroll 10s linear infinite;
-  will-change: transform;
-}
-
-.carousel-paused {
-  animation: none;
-  transform: none;
-}
-
 /* Manual scroll for projects carousel */
 .scroll-container {
   overflow-x: auto;
