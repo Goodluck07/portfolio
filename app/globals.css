@@ -57,7 +57,7 @@
   --ring: #e0784a;
 }
 
-* {
+html {
   scroll-behavior: smooth;
 }
 
@@ -83,10 +83,12 @@ body {
   color: var(--primary);
 }
 
-/* Manual scroll for projects carousel */
+/* Manual scroll for projects carousel. scroll-behavior is intentionally
+   left as the default (not smooth) - the carousel drives its own
+   frame-by-frame smoothing via requestAnimationFrame, and CSS smooth
+   scrolling fights with rapid direct scrollLeft writes. */
 .scroll-container {
   overflow-x: auto;
-  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;

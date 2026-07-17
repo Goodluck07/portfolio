@@ -1,39 +1,124 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Code2, GitBranch, ExternalLink, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
+const AUTOPLAY_PX_PER_SEC = 32;
+const RESUME_AFTER_MS = 2200;
+
 export default function Projects() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const lastFrameTimeRef = useRef<number | null>(null);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // scrollLeft only accepts whole-pixel values in most browsers, so a sub-1px
+  // per-frame delta silently rounds up to a full pixel every frame, roughly
+  // doubling the real speed. Accumulate the fractional remainder here and
+  // only write to scrollLeft once it adds up to at least a whole pixel.
+  const fractionalPixelsRef = useRef(0);
+  const [isInteracting, setIsInteracting] = useState(false);
 
-  const updateScrollState = () => {
-    const el = trackRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 4);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
-  };
+  // Triple the projects so the autoplay loop can wrap seamlessly in either direction
+  const loopedProjects = [...projects, ...projects, ...projects];
 
-  useEffect(() => {
-    updateScrollState();
-    const el = trackRef.current;
-    if (!el) return;
-    const onResize = () => updateScrollState();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+  const scheduleResume = useCallback(() => {
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => setIsInteracting(false), RESUME_AFTER_MS);
   }, []);
+
+  const pauseImmediately = useCallback(() => {
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    setIsInteracting(true);
+  }, []);
+
+  const pauseThenScheduleResume = useCallback(() => {
+    pauseImmediately();
+    scheduleResume();
+  }, [pauseImmediately, scheduleResume]);
+
+  // Start in the middle copy so autoplay always has room to wrap in either direction
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollLeft = el.scrollWidth / 3;
+  }, []);
+
+  // Keep the scroll position within the middle third by silently jumping by one
+  // set width when it drifts near either edge - invisible since the sets are identical.
+  // Safe to run regardless of what caused the scroll (autoplay, wheel, touch, arrows).
+  const recenterIfNeeded = useCallback(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const oneSet = el.scrollWidth / 3;
+    if (oneSet <= 0) return;
+    if (el.scrollLeft >= oneSet * 2) {
+      el.scrollLeft -= oneSet;
+    } else if (el.scrollLeft < oneSet * 0.5) {
+      el.scrollLeft += oneSet;
+    }
+  }, []);
+
+  // Autoplay loop, driven by scrollLeft (not CSS transform) so it shares the exact
+  // same position as manual touch/trackpad scrolling and never has to "snap" on pause.
+  // Whether the user is interacting is tracked separately via wheel/touch/mouse
+  // events below - not inferred from the 'scroll' event, since that fires for
+  // both autoplay's own writes and user input and can't reliably tell them apart.
+  useEffect(() => {
+    let rafId: number;
+
+    const step = (ts: number) => {
+      const el = trackRef.current;
+      if (el && !isInteracting) {
+        if (lastFrameTimeRef.current != null) {
+          const dt = ts - lastFrameTimeRef.current;
+          fractionalPixelsRef.current += (AUTOPLAY_PX_PER_SEC * dt) / 1000;
+          const wholePixels = Math.trunc(fractionalPixelsRef.current);
+          if (wholePixels !== 0) {
+            el.scrollLeft += wholePixels;
+            fractionalPixelsRef.current -= wholePixels;
+            recenterIfNeeded();
+          }
+        }
+        lastFrameTimeRef.current = ts;
+      } else {
+        lastFrameTimeRef.current = null;
+      }
+      rafId = requestAnimationFrame(step);
+    };
+
+    rafId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafId);
+  }, [isInteracting, recenterIfNeeded]);
+
+  // Own eased scroll tween instead of native scrollBy({behavior:"smooth"}) - the
+  // native smooth scroll fights with the autoplay loop's direct scrollLeft writes
+  const animateScrollBy = useCallback((delta: number, duration = 400) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const start = el.scrollLeft;
+    const startTime = performance.now();
+
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - startTime) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.scrollLeft = start + delta * eased;
+      recenterIfNeeded();
+      if (t < 1) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  }, [recenterIfNeeded]);
 
   const scrollByCard = (direction: 1 | -1) => {
     const el = trackRef.current;
     if (!el) return;
     const card = el.querySelector<HTMLElement>("[data-project-card]");
     const step = (card?.offsetWidth ?? 340) + 24;
-    el.scrollBy({ left: direction * step, behavior: "smooth" });
+    pauseThenScheduleResume();
+    animateScrollBy(direction * step);
   };
 
   return (
@@ -68,31 +153,34 @@ export default function Projects() {
         {/* Prev/next controls */}
         <button
           onClick={() => scrollByCard(-1)}
-          disabled={!canScrollLeft}
           aria-label="Previous project"
-          className="hidden sm:flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-background border border-border hover:border-primary/60 disabled:opacity-0 disabled:pointer-events-none transition-all"
+          className="hidden sm:flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-background border border-border hover:border-primary/60 transition-colors"
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
         <button
           onClick={() => scrollByCard(1)}
-          disabled={!canScrollRight}
           aria-label="Next project"
-          className="hidden sm:flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-background border border-border hover:border-primary/60 disabled:opacity-0 disabled:pointer-events-none transition-all"
+          className="hidden sm:flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-background border border-border hover:border-primary/60 transition-colors"
         >
           <ChevronRight className="h-5 w-5" />
         </button>
 
         <div
           ref={trackRef}
-          onScroll={updateScrollState}
-          className="flex gap-6 overflow-x-auto scroll-container snap-x snap-mandatory pb-2"
+          onScroll={recenterIfNeeded}
+          onWheel={pauseThenScheduleResume}
+          onTouchStart={pauseImmediately}
+          onTouchEnd={scheduleResume}
+          onMouseEnter={pauseImmediately}
+          onMouseLeave={() => setIsInteracting(false)}
+          className="flex gap-6 overflow-x-auto scroll-container"
         >
-          {projects.map((project) => (
+          {loopedProjects.map((project, index) => (
             <div
-              key={project.slug}
+              key={`${project.slug}-${index}`}
               data-project-card
-              className="flex-shrink-0 w-[280px] sm:w-[380px] snap-start"
+              className="flex-shrink-0 w-[280px] sm:w-[380px]"
             >
               <div className="bg-background rounded-lg overflow-hidden border border-border hover:border-primary/60 transition-colors duration-300 h-full flex flex-col group">
                 {/* Project Image */}
