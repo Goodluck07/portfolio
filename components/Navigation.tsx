@@ -31,7 +31,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16">
           <Link
             href="#"
-            className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+            className="font-display text-xl font-semibold text-foreground hover:text-primary transition-colors"
           >
             {personalInfo.name.split(" ")[0]}
           </Link>
@@ -42,9 +42,10 @@ export default function Navigation() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="relative text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
               >
                 {link.name}
+                <span className="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
             <ThemeToggle />

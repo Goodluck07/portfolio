@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowLeft, Github, ExternalLink, Code2, CheckCircle } from "lucide-react";
+import { ArrowLeft, GitBranch, CheckCircle, Rocket } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,6 +13,7 @@ interface Project {
   techStack: string[];
   highlights: string[];
   github: string;
+  liveDemo?: string;
   image?: string;
 }
 
@@ -42,42 +43,15 @@ export default function ProjectDetailClient({ project }: Props) {
         transition={{ duration: 0.6 }}
         className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12"
       >
-        {/* Project Header */}
-        <div className="mb-8">
-          <div className="flex items-start gap-4 mb-4">
-            <div className="p-4 bg-primary/10 rounded-xl">
-              <Code2 className="h-8 w-8 text-primary" />
-            </div>
-            <div className="flex-grow">
-              <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
-                {project.title}
-              </h1>
-              <div className="flex flex-wrap gap-3">
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors text-sm font-medium"
-                  >
-                    <Github className="h-4 w-4" />
-                    View on GitHub
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Project Image */}
+        {/* Project Image - Hero Style */}
         {project.image && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-8 rounded-xl overflow-hidden border border-border"
+            className="mb-8 rounded-lg overflow-hidden border border-border"
           >
-            <div className="relative w-full h-[400px]">
+            <div className="relative w-full h-[300px] sm:h-[400px] bg-secondary">
               <Image
                 src={project.image}
                 alt={project.title}
@@ -88,14 +62,47 @@ export default function ProjectDetailClient({ project }: Props) {
           </motion.div>
         )}
 
+        {/* Project Header */}
+        <div className="mb-8">
+          <h1 className="font-display text-3xl sm:text-4xl font-semibold text-foreground mb-4">
+            {project.title}
+          </h1>
+
+          {/* Action Buttons */}
+          <div className="flex flex-wrap gap-3">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors text-sm font-medium"
+              >
+                <GitBranch className="h-4 w-4" />
+                View Code
+              </a>
+            )}
+            {project.liveDemo && (
+              <a
+                href={project.liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors text-sm font-medium"
+              >
+                <Rocket className="h-4 w-4" />
+                Live Demo
+              </a>
+            )}
+          </div>
+        </div>
+
         {/* Description */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-card rounded-xl p-6 border border-border mb-8"
+          className="border-t border-border pt-6 mb-6"
         >
-          <h2 className="text-xl font-bold text-foreground mb-4">About This Project</h2>
+          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-4">About This Project</h2>
           <p className="text-muted-foreground leading-relaxed text-lg">
             {project.description}
           </p>
@@ -106,14 +113,14 @@ export default function ProjectDetailClient({ project }: Props) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="bg-card rounded-xl p-6 border border-border mb-8"
+          className="border-t border-border pt-6 mb-6"
         >
-          <h2 className="text-xl font-bold text-foreground mb-4">Technologies Used</h2>
-          <div className="flex flex-wrap gap-3">
+          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-4">Technologies Used</h2>
+          <div className="flex flex-wrap gap-2">
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-4 py-2 bg-primary/10 text-primary rounded-lg font-medium"
+                className="px-3 py-1.5 border border-border text-muted-foreground rounded-md font-medium text-sm"
               >
                 {tech}
               </span>
@@ -126,14 +133,14 @@ export default function ProjectDetailClient({ project }: Props) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-card rounded-xl p-6 border border-border mb-8"
+          className="border-t border-border pt-6 mb-8"
         >
-          <h2 className="text-xl font-bold text-foreground mb-4">Key Highlights</h2>
+          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-4">Key Highlights</h2>
           <ul className="space-y-4">
             {project.highlights.map((highlight) => (
               <li key={highlight.slice(0, 50)} className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-muted-foreground">{highlight}</span>
+                <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <span className="text-muted-foreground leading-relaxed">{highlight}</span>
               </li>
             ))}
           </ul>
@@ -148,7 +155,7 @@ export default function ProjectDetailClient({ project }: Props) {
         >
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 text-primary hover:underline"
+            className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to all projects

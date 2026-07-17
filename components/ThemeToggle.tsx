@@ -9,6 +9,7 @@ export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- standard client-mount guard to avoid theme hydration mismatch
     setMounted(true);
   }, []);
 
@@ -17,6 +18,7 @@ export default function ThemeToggle() {
       <button
         className="rounded-md p-2 hover:bg-secondary transition-colors"
         aria-label="Toggle theme"
+        suppressHydrationWarning
       >
         <Sun className="h-5 w-5" />
       </button>
@@ -28,6 +30,7 @@ export default function ThemeToggle() {
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className="rounded-md p-2 hover:bg-secondary transition-colors"
       aria-label="Toggle theme"
+      suppressHydrationWarning
     >
       {theme === "dark" ? (
         <Sun className="h-5 w-5 text-foreground" />

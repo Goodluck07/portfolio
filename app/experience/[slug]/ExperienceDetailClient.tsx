@@ -56,7 +56,7 @@ export default function ExperienceDetailClient({ experience }: Props) {
       >
         <div className="flex items-start gap-6 mb-8">
           {experience.logo && (
-            <div className="relative w-20 h-20 flex-shrink-0 bg-white rounded-xl p-3 shadow-lg border border-border">
+            <div className="relative w-16 h-16 flex-shrink-0 bg-white rounded-lg p-3 border border-border">
               <Image
                 src={experience.logo}
                 alt={`${experience.company} logo`}
@@ -66,11 +66,11 @@ export default function ExperienceDetailClient({ experience }: Props) {
             </div>
           )}
           <div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
+            <h1 className="font-display text-3xl sm:text-4xl font-semibold text-foreground mb-2">
               {experience.company}
             </h1>
-            <p className="text-xl text-primary font-semibold mb-3">{experience.role}</p>
-            <div className="flex flex-wrap gap-4 text-muted-foreground">
+            <p className="text-lg text-primary font-medium mb-3">{experience.role}</p>
+            <div className="flex flex-wrap gap-4 text-muted-foreground text-sm">
               <span className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
                 {experience.location}
@@ -90,13 +90,11 @@ export default function ExperienceDetailClient({ experience }: Props) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-card rounded-xl p-6 border border-border mb-8"
+              className="border-t border-border pt-6 mb-6"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Briefcase className="h-5 w-5 text-primary" />
-                </div>
-                <h2 className="text-xl font-bold text-foreground">Overview</h2>
+              <div className="flex items-center gap-2 mb-3">
+                <Briefcase className="h-4 w-4 text-primary" />
+                <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide">Overview</h2>
               </div>
               <p className="text-muted-foreground leading-relaxed">{story.overview}</p>
             </motion.div>
@@ -106,13 +104,11 @@ export default function ExperienceDetailClient({ experience }: Props) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-card rounded-xl p-6 border border-border mb-8"
+              className="border-t border-border pt-6 mb-6"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-orange-500/10 rounded-lg">
-                  <Target className="h-5 w-5 text-orange-500" />
-                </div>
-                <h2 className="text-xl font-bold text-foreground">The Challenge</h2>
+              <div className="flex items-center gap-2 mb-3">
+                <Target className="h-4 w-4 text-primary" />
+                <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide">The Challenge</h2>
               </div>
               <p className="text-muted-foreground leading-relaxed">{story.challenge}</p>
             </motion.div>
@@ -122,13 +118,11 @@ export default function ExperienceDetailClient({ experience }: Props) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-card rounded-xl p-6 border border-border mb-8"
+              className="border-t border-border pt-6 mb-6"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-blue-500/10 rounded-lg">
-                  <Lightbulb className="h-5 w-5 text-blue-500" />
-                </div>
-                <h2 className="text-xl font-bold text-foreground">My Approach</h2>
+              <div className="flex items-center gap-2 mb-3">
+                <Lightbulb className="h-4 w-4 text-primary" />
+                <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide">My Approach</h2>
               </div>
               <p className="text-muted-foreground leading-relaxed">{story.approach}</p>
             </motion.div>
@@ -138,13 +132,11 @@ export default function ExperienceDetailClient({ experience }: Props) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-card rounded-xl p-6 border border-border mb-8"
+              className="border-t border-border pt-6 mb-6"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-green-500/10 rounded-lg">
-                  <Rocket className="h-5 w-5 text-green-500" />
-                </div>
-                <h2 className="text-xl font-bold text-foreground">Impact</h2>
+              <div className="flex items-center gap-2 mb-3">
+                <Rocket className="h-4 w-4 text-primary" />
+                <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide">Impact</h2>
               </div>
               <p className="text-muted-foreground leading-relaxed">{story.impact}</p>
             </motion.div>
@@ -154,19 +146,16 @@ export default function ExperienceDetailClient({ experience }: Props) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-card rounded-xl p-6 border border-border mb-8"
+              className="border-t border-border pt-6 mb-6"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-purple-500/10 rounded-lg">
-                  <Code className="h-5 w-5 text-purple-500" />
-                </div>
-                <h2 className="text-xl font-bold text-foreground">Technical Details</h2>
+              <div className="flex items-center gap-2 mb-3">
+                <Code className="h-4 w-4 text-primary" />
+                <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide">Technical Details</h2>
               </div>
-              <ul className="space-y-3">
+              <ul className="space-y-3 list-disc pl-5 marker:text-primary">
                 {story.techDetails.map((detail) => (
-                  <li key={detail} className="flex items-start gap-3 text-muted-foreground">
-                    <span className="text-primary mt-1">•</span>
-                    <span>{detail}</span>
+                  <li key={detail} className="text-muted-foreground">
+                    {detail}
                   </li>
                 ))}
               </ul>
@@ -177,13 +166,11 @@ export default function ExperienceDetailClient({ experience }: Props) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="bg-card rounded-xl p-6 border border-border mb-8"
+              className="border-t border-border pt-6 mb-6"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-yellow-500/10 rounded-lg">
-                  <BookOpen className="h-5 w-5 text-yellow-500" />
-                </div>
-                <h2 className="text-xl font-bold text-foreground">Key Learnings</h2>
+              <div className="flex items-center gap-2 mb-3">
+                <BookOpen className="h-4 w-4 text-primary" />
+                <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide">Key Learnings</h2>
               </div>
               <p className="text-muted-foreground leading-relaxed">{story.learnings}</p>
             </motion.div>
@@ -195,13 +182,13 @@ export default function ExperienceDetailClient({ experience }: Props) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="bg-card rounded-xl p-6 border border-border"
+          className="border-t border-border pt-6"
         >
-          <h2 className="text-xl font-bold text-foreground mb-4">Key Achievements</h2>
+          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-4">Key Achievements</h2>
           <ul className="space-y-4">
             {experience.achievements.map((achievement, index) => (
               <li key={achievement.slice(0, 50)} className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-medium">
+                <span className="flex-shrink-0 w-6 h-6 border border-primary/40 rounded-full flex items-center justify-center text-primary text-xs font-medium">
                   {index + 1}
                 </span>
                 <span className="text-muted-foreground">{achievement}</span>

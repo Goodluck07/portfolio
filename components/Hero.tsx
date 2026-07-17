@@ -26,16 +26,24 @@ export default function Hero() {
     };
   }, [showResumeMenu]);
   return (
-    <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-b from-background via-background to-card">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section className="min-h-screen flex items-center relative bg-background">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
         <motion.div
-          className="text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
+          <motion.p
+            className="eyebrow mb-6"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            {personalInfo.title} · {personalInfo.location}
+          </motion.p>
+
           <motion.h1
-            className="text-5xl sm:text-6xl md:text-7xl font-bold text-foreground mb-6"
+            className="font-display text-5xl sm:text-6xl md:text-7xl font-semibold text-foreground mb-8 leading-[1.05] max-w-4xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -44,50 +52,42 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            className="text-xl sm:text-2xl md:text-3xl text-primary font-semibold mb-4"
+            className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            {personalInfo.title}
-          </motion.p>
-
-          <motion.p
-            className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
           >
             {personalInfo.tagline}
           </motion.p>
 
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-4 mb-12"
+            className="flex flex-wrap items-center gap-4 mb-14"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Link
               href="#projects"
-              className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors shadow-lg"
+              className="px-7 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors"
             >
               View Projects
             </Link>
             <div className="relative" ref={resumeMenuRef}>
               <button
                 onClick={() => setShowResumeMenu(!showResumeMenu)}
-                className="px-8 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/80 transition-colors flex items-center gap-2"
+                className="px-7 py-3 border border-border rounded-md font-medium text-foreground hover:border-primary hover:text-primary transition-colors flex items-center gap-2"
+                suppressHydrationWarning
               >
-                <FileText className="h-5 w-5" />
+                <FileText className="h-4 w-4" />
                 Resume
               </button>
               {showResumeMenu && (
-                <div className="absolute top-full mt-2 left-0 w-full bg-card border border-border rounded-lg shadow-lg overflow-hidden z-10">
+                <div className="absolute top-full mt-2 left-0 w-52 bg-card border border-border rounded-md overflow-hidden z-10">
                   <a
                     href="/resume/Goodluck_Badewole_resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 hover:bg-secondary/20 transition-colors text-foreground"
+                    className="flex items-center gap-2 px-5 py-3 hover:bg-secondary transition-colors text-foreground text-sm"
                     onClick={() => setShowResumeMenu(false)}
                   >
                     <Eye className="h-4 w-4" />
@@ -96,7 +96,7 @@ export default function Hero() {
                   <a
                     href="/resume/Goodluck_Badewole_resume.pdf"
                     download
-                    className="flex items-center gap-2 px-6 py-3 hover:bg-secondary/20 transition-colors text-foreground border-t border-border"
+                    className="flex items-center gap-2 px-5 py-3 hover:bg-secondary transition-colors text-foreground text-sm border-t border-border"
                     onClick={() => setShowResumeMenu(false)}
                   >
                     <Download className="h-4 w-4" />
@@ -107,49 +107,49 @@ export default function Hero() {
             </div>
             <Link
               href="#contact"
-              className="px-8 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/80 transition-colors"
+              className="px-7 py-3 rounded-md font-medium text-muted-foreground hover:text-primary transition-colors"
             >
               Contact Me
             </Link>
           </motion.div>
 
           <motion.div
-            className="flex items-center justify-center gap-6"
+            className="flex items-center gap-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
           >
             <a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full hover:bg-secondary transition-colors"
+              className="p-3 rounded-md hover:bg-secondary hover:text-primary transition-colors"
               aria-label="GitHub"
             >
-              <Github className="h-6 w-6" />
+              <Github className="h-5 w-5" />
             </a>
             <a
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full hover:bg-secondary transition-colors"
+              className="p-3 rounded-md hover:bg-secondary hover:text-primary transition-colors"
               aria-label="LinkedIn"
             >
-              <Linkedin className="h-6 w-6" />
+              <Linkedin className="h-5 w-5" />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
-              className="p-3 rounded-full hover:bg-secondary transition-colors"
+              className="p-3 rounded-md hover:bg-secondary hover:text-primary transition-colors"
               aria-label="Email"
             >
-              <Mail className="h-6 w-6" />
+              <Mail className="h-5 w-5" />
             </a>
           </motion.div>
         </motion.div>
       </div>
 
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -160,7 +160,7 @@ export default function Hero() {
         }}
       >
         <Link href="#about" aria-label="Scroll to about section">
-          <ArrowDown className="h-6 w-6 text-muted-foreground" />
+          <ArrowDown className="h-5 w-5 text-muted-foreground" />
         </Link>
       </motion.div>
     </section>

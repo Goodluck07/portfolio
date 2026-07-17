@@ -38,7 +38,7 @@ export default function Contact() {
       } else {
         setSubmitStatus("error");
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -67,28 +67,28 @@ export default function Contact() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-center">
+          <p className="eyebrow mb-3 text-center">Contact</p>
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-foreground mb-4 text-center">
             Get In Touch
           </h2>
           <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-            I&apos;m currently open to new opportunities and collaborations.
-            Feel free to reach out!
+            Graduating May 2027 and looking for new-grad SWE roles in
+            backend, infrastructure, or full-stack. Fastest way to reach me is
+            email.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold text-foreground mb-6">
+              <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-6">
                 Contact Information
               </h3>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="flex items-center gap-3 p-4 bg-card rounded-lg hover:bg-card/80 transition-colors group border border-border"
+                  className="flex items-center gap-3 p-4 rounded-md hover:border-primary/60 transition-colors group border border-border"
                 >
-                  <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <Mail className="h-5 w-5 text-primary" />
-                  </div>
+                  <Mail className="h-5 w-5 text-primary" />
                   <div>
                     <p className="text-sm text-muted-foreground">Email</p>
                     <p className="text-foreground font-medium">
@@ -101,11 +101,9 @@ export default function Contact() {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 bg-card rounded-lg hover:bg-card/80 transition-colors group border border-border"
+                  className="flex items-center gap-3 p-4 rounded-md hover:border-primary/60 transition-colors group border border-border"
                 >
-                  <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <Linkedin className="h-5 w-5 text-primary" />
-                  </div>
+                  <Linkedin className="h-5 w-5 text-primary" />
                   <div>
                     <p className="text-sm text-muted-foreground">LinkedIn</p>
                     <p className="text-foreground font-medium">
@@ -118,11 +116,9 @@ export default function Contact() {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 bg-card rounded-lg hover:bg-card/80 transition-colors group border border-border"
+                  className="flex items-center gap-3 p-4 rounded-md hover:border-primary/60 transition-colors group border border-border"
                 >
-                  <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <Github className="h-5 w-5 text-primary" />
-                  </div>
+                  <Github className="h-5 w-5 text-primary" />
                   <div>
                     <p className="text-sm text-muted-foreground">GitHub</p>
                     <p className="text-foreground font-medium">
@@ -134,7 +130,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold text-foreground mb-6">
+              <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-6">
                 Send a Message
               </h3>
 
@@ -153,7 +149,8 @@ export default function Contact() {
                     required
                     value={formState.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
+                    className="w-full px-4 py-2 bg-background border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-foreground"
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -171,7 +168,8 @@ export default function Contact() {
                     required
                     value={formState.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
+                    className="w-full px-4 py-2 bg-background border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-foreground"
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -189,7 +187,8 @@ export default function Contact() {
                     required
                     value={formState.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
+                    className="w-full px-4 py-2 bg-background border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-foreground"
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -207,14 +206,15 @@ export default function Contact() {
                     rows={5}
                     value={formState.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground resize-none"
+                    className="w-full px-4 py-2 bg-background border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-foreground resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  suppressHydrationWarning
                 >
                   {isSubmitting ? (
                     "Sending..."
@@ -227,7 +227,7 @@ export default function Contact() {
                 </button>
 
                 {submitStatus === "success" && (
-                  <p className="text-green-600 dark:text-green-400 text-sm text-center">
+                  <p className="text-primary text-sm text-center">
                     Message sent successfully!
                   </p>
                 )}

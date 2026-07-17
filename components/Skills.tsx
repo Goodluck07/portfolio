@@ -40,24 +40,22 @@ export default function Skills() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-12 text-center">
+          <p className="eyebrow mb-3 text-center">Skills</p>
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-foreground mb-12 text-center">
             Technical Skills
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-x-8 gap-y-10">
             {skillCategories.map((category, index) => (
               <motion.div
                 key={category.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-card rounded-lg p-6 shadow-sm border border-border"
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <category.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground">
+                <div className="flex items-center gap-2 mb-5">
+                  <category.icon className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">
                     {category.title}
                   </h3>
                 </div>
@@ -76,7 +74,7 @@ export default function Skills() {
                         duration: 0.3,
                         delay: index * 0.2 + i * 0.05,
                       }}
-                      className="px-3 py-1.5 bg-secondary text-secondary-foreground rounded-md text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
+                      className="px-3 py-1.5 border border-border text-secondary-foreground rounded-md text-sm font-medium hover:border-primary hover:text-primary transition-colors cursor-default"
                     >
                       {skill}
                     </motion.span>

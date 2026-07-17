@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Navigation from "@/components/Navigation";
@@ -10,10 +10,16 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  axes: ["opsz"],
+});
+
 export const metadata: Metadata = {
   title: "Goodluck Badewole | Software Engineer",
   description:
-    "Portfolio of Goodluck Badewole - Computer Science student and Software Engineer with experience at Splunk and Activision. Passionate about building scalable software solutions.",
+    "Portfolio of Goodluck Badewole, a Computer Science senior at Alabama A&M University (4.0 GPA) with internship experience at Splunk, Activision, and Innovation Portal spanning backend infrastructure, game systems, and shipped AI products.",
   keywords: [
     "Goodluck Badewole",
     "Software Engineer",
@@ -25,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Goodluck Badewole | Software Engineer",
     description:
-      "Portfolio of Goodluck Badewole - Software Engineer passionate about building scalable solutions",
+      "CS senior at Alabama A&M University. Internships at Splunk, Activision, and Innovation Portal. 1st place, Sandia National Labs CTF.",
     type: "website",
   },
 };
@@ -37,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${fraunces.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navigation />
           {children}

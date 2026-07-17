@@ -1,178 +1,145 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
-import { Code2, Github, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { Code2, GitBranch, ExternalLink, ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Projects() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
-  const router = useRouter();
 
-  // Duplicate projects for seamless loop
-  const loopedProjects = [...projects, ...projects];
-
-  // Auto-scroll with requestAnimationFrame - seamless loop
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    let animationId: number;
-    let lastTime = 0;
-
-    const animate = (currentTime: number) => {
-      if (!lastTime) lastTime = currentTime;
-      const delta = currentTime - lastTime;
-      lastTime = currentTime;
-
-      if (!isPaused) {
-        // Half of scroll width = one full set of projects
-        const halfScroll = container.scrollWidth / 2;
-        const newScroll = container.scrollLeft + (delta / 1000) * 120;
-
-        // When we've scrolled past the first set, jump back to start seamlessly
-        if (newScroll >= halfScroll) {
-          container.scrollLeft = newScroll - halfScroll;
-        } else {
-          container.scrollLeft = newScroll;
-        }
-      }
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(animationId);
-  }, [isPaused]);
-
-  const scroll = (direction: "left" | "right") => {
-    if (!containerRef.current) return;
-    const scrollAmount = 400;
-    containerRef.current.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth",
-    });
-  };
+  // Triple the projects for seamless CSS animation loop
+  const loopedProjects = [...projects, ...projects, ...projects];
 
   return (
     <section id="projects" className="py-20 bg-card overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="eyebrow mb-3 text-center"
+        >
+          Projects
+        </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl sm:text-4xl font-bold text-foreground text-center"
+          className="font-display text-3xl sm:text-4xl font-semibold text-foreground text-center"
         >
           Featured Projects
         </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="text-muted-foreground text-center mt-4 max-w-2xl mx-auto"
-        >
-          Scroll or use arrows to browse • Click to learn more
-        </motion.p>
       </div>
 
-      {/* Navigation Arrows */}
-      <div className="max-w-7xl mx-auto px-4 mb-4 flex justify-end gap-2">
-        <button
-          onClick={() => scroll("left")}
-          className="p-3 bg-secondary hover:bg-primary hover:text-primary-foreground rounded-full transition-colors shadow-sm"
-          aria-label="Scroll left"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          className="p-3 bg-secondary hover:bg-primary hover:text-primary-foreground rounded-full transition-colors shadow-sm"
-          aria-label="Scroll right"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button>
-      </div>
-
-      {/* Scrollable Container */}
+      {/* Carousel Container */}
       <div className="relative">
         {/* Gradient overlays */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-card to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-card to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-card to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-card to-transparent z-10 pointer-events-none" />
 
+        {/* Animation wrapper */}
         <div
-          ref={containerRef}
-          className="flex gap-5 px-6 overflow-x-auto scroll-container"
+          className={`${isPaused ? "overflow-x-auto scroll-container" : "overflow-hidden"}`}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          onTouchStart={() => setIsPaused(true)}
-          onTouchEnd={() => setIsPaused(false)}
         >
-          {loopedProjects.map((project, index) => (
-            <div
-              key={`${project.slug}-${index}`}
-              className="flex-shrink-0 w-[320px] sm:w-[360px]"
-            >
+          <div
+            className={`flex gap-6 px-6 ${isPaused ? "carousel-paused" : "carousel-animate"}`}
+          >
+            {loopedProjects.map((project, index) => (
               <div
-                role="button"
-                tabIndex={0}
-                onClick={() => router.push(`/projects/${project.slug}`)}
-                onKeyDown={(e) => e.key === "Enter" && router.push(`/projects/${project.slug}`)}
-                className="bg-background rounded-xl p-5 shadow-sm border border-border hover:shadow-xl hover:border-primary/50 transition-all duration-300 h-full flex flex-col cursor-pointer group"
+                key={`${project.slug}-${index}`}
+                className="flex-shrink-0 w-[340px] sm:w-[380px]"
               >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="p-2.5 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <Code2 className="h-5 w-5 text-primary" />
+                <div className="bg-background rounded-lg overflow-hidden border border-border hover:border-primary/60 transition-colors duration-300 h-full flex flex-col group">
+                  {/* Project Image */}
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="relative h-48 bg-secondary overflow-hidden block"
+                  >
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Code2 className="h-16 w-16 text-primary/30" />
+                      </div>
+                    )}
+                  </Link>
+
+                  {/* Content */}
+                  <div className="p-5 flex flex-col flex-grow">
+                    <Link href={`/projects/${project.slug}`} className="group/title">
+                      <h3 className="text-xl font-semibold text-foreground mb-2 group-hover/title:text-primary transition-colors flex items-center gap-1.5">
+                        {project.title}
+                        <ArrowUpRight className="h-4 w-4 opacity-0 group-hover/title:opacity-100 transition-opacity" />
+                      </h3>
+                    </Link>
+
+                    <p className="text-muted-foreground mb-4 leading-relaxed text-sm line-clamp-3 flex-grow">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.techStack.slice(0, 4).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2.5 py-1 border border-border text-muted-foreground rounded-md text-xs font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.techStack.length > 4 && (
+                        <span className="px-2.5 py-1 text-muted-foreground rounded-md text-xs font-medium">
+                          +{project.techStack.length - 4}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Links */}
+                    <div className="flex items-center gap-4 pt-3 border-t border-border">
+                      {project.github && (
+                        <button
+                          onClick={() => window.open(project.github, "_blank")}
+                          className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                          suppressHydrationWarning
+                        >
+                          <GitBranch className="h-4 w-4" />
+                          Code
+                        </button>
+                      )}
+                      {project.liveDemo && (
+                        <button
+                          onClick={() => window.open(project.liveDemo, "_blank")}
+                          className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                          suppressHydrationWarning
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                          Preview
+                        </button>
+                      )}
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium ml-auto"
+                      >
+                        Details
+                      </Link>
+                    </div>
                   </div>
-                  {project.github && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(project.github, "_blank");
-                      }}
-                      className="p-2 hover:bg-secondary rounded-lg transition-colors"
-                      aria-label="View on GitHub"
-                    >
-                      <Github className="h-4 w-4 text-muted-foreground hover:text-primary" />
-                    </button>
-                  )}
-                </div>
-
-                <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-
-                <p className="text-muted-foreground mb-3 leading-relaxed text-sm line-clamp-2 flex-grow">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-1.5 mb-3">
-                  {project.techStack.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-0.5 bg-secondary text-secondary-foreground rounded-full text-xs"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.techStack.length > 3 && (
-                    <span className="px-2 py-0.5 bg-secondary text-secondary-foreground rounded-full text-xs">
-                      +{project.techStack.length - 3}
-                    </span>
-                  )}
-                </div>
-
-                <div className="flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all mt-auto">
-                  <span>Learn more</span>
-                  <ArrowRight className="h-4 w-4" />
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

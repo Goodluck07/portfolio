@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: "Goodluck Badewole",
   title: "Software Engineer",
-  tagline: "Building scalable systems and impactful software solutions",
+  tagline: "I'm from Nigeria, finishing up a CS degree at Alabama A&M, and I spend most weekends playing pickup soccer when I'm not debugging something. Looking for a backend or infrastructure new-grad role for 2027, ideally somewhere I get to own a system end to end.",
   location: "Huntsville, AL",
   email: "badewolegoodluck55@gmail.com",
   phone: "(256) 441-7555",
@@ -20,6 +20,14 @@ export const education = {
     "Honors Program",
     "AAMU Presidential Scholarship",
     "Whataburger Feeding Student Success Scholarship",
+  ],
+  currentTerm: "Fall 2026",
+  coursesInProgress: [
+    "Senior Problem",
+    "Linux With Applications Programming",
+    "Theory of Algorithms",
+    "Intro to Data Science",
+    "Probability and Statistics",
   ],
 };
 
@@ -49,7 +57,7 @@ export const workExperience = [
         "Recharts/D3.js for visualizing weakness patterns over time",
         "Browser localStorage for persistence without requiring user accounts",
       ],
-      learnings: "This internship taught me the importance of user-centric design. By removing friction (no login, fast analysis), we dramatically increased user engagement. I also deepened my understanding of integrating AI models into production applications.",
+      learnings: "Cutting the login requirement was the single decision that mattered most for adoption. Every extra step before a user sees value costs testers. I also learned where to draw the line between what Stockfish should evaluate locally and what's worth sending to an LLM, since Claude API calls are the slowest and most expensive part of the pipeline.",
     },
   },
   {
@@ -77,7 +85,7 @@ export const workExperience = [
         "Docker and Kind clusters for local testing",
         "CI/CD pipelines for deployment automation",
       ],
-      learnings: "This internship gave me deep experience with Kubernetes internals and production infrastructure at scale. I learned how small improvements in communication systems can have massive impacts on engineering productivity. Working on infrastructure used by thousands of engineers taught me the importance of thorough testing and gradual rollouts.",
+      learnings: "Storing the Slack thread ID on the CRD's status field instead of standing up a separate database was the right tradeoff for this system. It kept the thread state colocated with the resource it described and reused the controller's existing reconcile loop instead of adding a new one. Testing against Kind clusters before touching a real StackGroup also made it clear how much of the value here was in restraint: the feature only had to do one thing (thread related messages together) and do it reliably.",
     },
   },
   {
@@ -104,16 +112,43 @@ export const workExperience = [
         "Custom resource management system",
         "Procedural event generation for storytelling",
       ],
-      learnings: "This program transformed my understanding of game development. I learned that great games aren't just about fun mechanics - they're about creating experiences that resonate with players. Working with industry professionals taught me professional development practices and the importance of iteration based on playtesting feedback.",
+      learnings: "The NPC behavior system only started feeling right after I decoupled it from the resource economy. Earlier versions had NPCs react directly to raw resource counts, which made their behavior twitchy and hard to tune. Routing decisions through a smoothed state instead gave mentors something they could actually give feedback on, instead of just noise.",
     },
   },
 ];
 
 export const projects = [
   {
+    title: "STAK",
+    slug: "stak",
+    description: "Co-founded and built a full-stack fintech web app with a real-time market data feed and a swipeable stock discovery interface, growing to 127 beta users since launch.",
+    techStack: ["TypeScript", "React", "Firebase", "Node.js", "Gemini API"],
+    highlights: [
+      "Built the swipeable stock discovery interface and real-time market data feed from scratch as co-founder and lead full-stack developer",
+      "Integrated the Gemini API to generate structured AI trend-insight cards (title, description, sentiment) with server-side response caching and a stale-cache fallback on timeout, cutting LLM API costs and keeping the feed responsive even when Gemini is slow",
+      "Grew to 127 beta users since a January 2026 launch",
+    ],
+    github: "",
+    liveDemo: "https://thestak.org",
+    image: "/images/projects/stak.png",
+  },
+  {
+    title: "AAMU Course Management App",
+    slug: "aamu-course-management",
+    description: "Led development of a student course registration planning tool for GDG @ AAMU, addressing the university's limited advisor-to-student ratio by letting students independently build and visualize semester schedules before advising appointments.",
+    techStack: ["React", "Next.js", "Tailwind CSS", "Radix UI"],
+    highlights: [
+      "Led development of the scheduling tool, scoping the feature set around the actual bottleneck: students only get a few minutes with an advisor and often show up without a plan",
+      "Built the schedule visualization and course-selection flow using Radix UI primitives for accessible, keyboard-navigable components",
+    ],
+    github: "",
+    liveDemo: "",
+    image: "/images/projects/aamu-course-management.png",
+  },
+  {
     title: "GDG Opportunities Hub",
     slug: "gdg-opportunities-hub",
-    description: "Collaborated with a team of 8 developers to build and deploy a full-stack web application helping 100+ students discover and track internships, scholarships, and job",
+    description: "Collaborated with a team of 8 developers to build and deploy a full-stack web application helping 100+ students discover and track internships, scholarships, and job opportunities with real-time updates and calendar integration.",
     techStack: ["TypeScript", "React", "Next.js", "Supabase", "TanStack Query"],
     highlights: [
       "Led frontend development of applications tracking features using TanStack Query, reducing data fetching redundancy by 40%",
@@ -121,99 +156,82 @@ export const projects = [
       "Integrated frontend with Supabase APIs for authentication, CRUD operations, and role-based access control",
     ],
     github: "https://github.com/GDG-AAMU/GDG_Opp_hub",
-    image: "",
-  },
-  {
-    title: "Personal AI Knowledge Assistant",
-    slug: "ai-knowledge-assistant",
-    description: "Built a full-stack RAG application enabling users to upload, index, and semantically search through personal documents using vector embeddings and LLM integration",
-    techStack: ["Python", "TypeScript", "React", "AWS Bedrock", "Pinecone", "LangChain"],
-    highlights: [
-      "Implemented document processing pipeline handling 1000+ PDFs, text files, and markdown documents with automatic chunking, embedding generation using AWS Bedrock, and storage in Pinecone vector database",
-      "Developed conversational interface using LangChain for context-aware responses, achieving sub-second query latency and 90%+ answer relevance through optimized retrieval mechanisms",
-    ],
-    github: "",
-    image: "",
-  },
-  {
-    title: "Distributed Task Scheduler",
-    slug: "distributed-task-scheduler",
-    description: "Architected and deployed a fault-tolerant distributed job queue system using Go microservices, Redis for job persistence, and Kubernetes for container orchestration, handling 10,000+ tasks per minute",
-    techStack: ["Go", "Python", "Docker", "Kubernetes", "Redis", "PostgreSQL"],
-    highlights: [
-      "Implemented priority-based scheduling with automatic retry logic, dead letter queues, and exponential backoffs, achieving 87% task completion rate and reducing failed job recovery time by 85%",
-      "Built monitoring dashboard with real time metrics using Prometheus and Grafana, providing visibility into queue depth, worker health and task latency across distributed workers",
-    ],
-    github: "",
-    image: "",
+    liveDemo: "https://gdg-opp-hub.vercel.app/",
+    image: "/images/projects/gdg-hub.png",
   },
   {
     title: "Pantry Manager Web-App",
     slug: "pantry-manager",
-    description: "Developed and deployed a dynamic pantry management web application using React, Firebase, and Next.js, enabling users to efficiently track and manage food items",
+    description: "Developed and deployed a dynamic pantry management web application using React, Firebase, and Next.js, enabling users to efficiently track and manage food items with real-time synchronization.",
     techStack: ["React", "Firebase", "Next.js"],
     highlights: [
       "Enhanced user experience by implementing persistent authentication and real-time data updates, resulting in a 30% increase in user retention and 10% increase in food management",
     ],
     github: "https://github.com/Goodluck07/GBPantryManager",
-    image: "",
+    liveDemo: "https://gb-pantry-manager.vercel.app/",
+    image: "/images/projects/pantry-manager.png",
   },
   {
     title: "Expense Tracker App",
     slug: "expense-tracker",
-    description: "Developed a comprehensive expense tracker application using Python and Tkinter, enabling users to efficiently log, categorize, and visualize their financial data",
+    description: "Developed a comprehensive expense tracker application using Python and Tkinter, enabling users to efficiently log, categorize, and visualize their financial data with interactive charts.",
     techStack: ["Python", "Tkinter", "Matplotlib", "CSV"],
     highlights: [
       "Implemented robust features such as expense plotting with Matplotlib and CSV-based data management, ensuring seamless data storage and retrieval",
       "Improved finance management for users, with an increase in user satisfaction and a 30% reduction in time spent on financial tracking",
     ],
     github: "https://github.com/Goodluck07/ExpenseTracker",
-    image: "",
+    liveDemo: "",
+    image: "/images/projects/expense-tracker.png",
   },
   {
     title: "Sales Insights for Consumer Business",
     slug: "sales-insights",
-    description: "Built a sales insight solution that helps bring data informed decision-making using Python that connected with MySQL to get required sales data to perform exploratory data analysis",
+    description: "Built a sales insight solution that helps bring data-informed decision-making using Python connected with MySQL to perform exploratory data analysis and visualization with PowerBI.",
     techStack: ["Python", "MySQL", "NumPy", "Pandas", "PowerBI"],
     highlights: [
       "Data Cleaning and transformation was done using NumPy and Pandas. For data visualization, PowerBI was used",
       "Enabled data-informed decision-making, resulting in a 20% increase in sales efficiency and a 15% reduction in data processing time",
     ],
-    github: "",
-    image: "",
+    github: "https://github.com/Goodluck07/Sales-Insights-for-Consumer-Business",
+    liveDemo: "",
+    image: "/images/projects/sales-insights.png",
   },
   {
     title: "Chatbot with Website Integration",
     slug: "chatbot-website",
-    description: "Engineered a chatbot using Python and Rasa and integrated it into a website using Flask",
+    description: "Engineered an intelligent chatbot using Python and Rasa NLU framework, integrated into a responsive website using Flask for seamless user interaction and support.",
     techStack: ["Python", "Rasa", "Flask"],
     highlights: [
       "Improved user interaction by 40%, reducing response time by 30% and increasing user engagement by 25%",
     ],
     github: "https://github.com/Goodluck07/LuckyChatAi",
-    image: "",
+    liveDemo: "https://lucky-chat-ai.vercel.app/",
+    image: "/images/projects/chatbot.png",
   },
   {
     title: "INSPIRE Research Program",
     slug: "inspire-research",
-    description: "Utilized MATLAB codes and the theory of DMD to analyze and interpret data related to hurricane formation patterns",
+    description: "Utilized MATLAB codes and the theory of Dynamic Mode Decomposition (DMD) to analyze and interpret data related to hurricane formation patterns for predictive modeling.",
     techStack: ["MATLAB", "DMD", "Data Analysis"],
     highlights: [
       "Contributed to predictive modeling efforts, enhancing forecast accuracy by 15% and providing insights into weather patterns",
     ],
     github: "",
-    image: "",
+    liveDemo: "",
+    image: "/images/projects/inspire-research.jpg",
   },
   {
     title: "Flashcard Web-App",
     slug: "flashcard-app",
-    description: "Developed and deployed a flashcard management web application using React, Firebase, and Next.js, allowing users to create, save, and search flashcards instantly",
+    description: "Developed and deployed a flashcard management web application using React, Firebase, and Next.js with OpenAI integration, allowing users to create, save, and search flashcards instantly.",
     techStack: ["React", "Firebase", "Next.js", "OpenAI"],
     highlights: [
       "Improved user engagement by incorporating real-time data synchronization and personalized authentication, leading to enhanced learning experiences and streamlined flashcard organization",
     ],
     github: "https://github.com/Goodluck07/GVTCrads",
-    image: "",
+    liveDemo: "https://gvtcards.vercel.app/",
+    image: "/images/projects/flashcard-app.png",
   },
 ];
 
@@ -232,9 +250,12 @@ export const skills = {
   frameworks: [
     "React",
     "Next.js",
+    "Node.js",
     "Flask",
+    "TensorFlow",
     "LangChain",
     "TanStack Query",
+    "Radix UI",
     "Pandas",
     "NumPy",
     "Unity",
@@ -257,12 +278,13 @@ export const skills = {
     "Supabase",
     "Grafana",
     "PowerBI",
+    "Gemini API",
   ],
 };
 
 export const leadership = [
   {
-    role: "Secretary & Assistant Tech Lead",
+    role: "Tech Lead",
     organization: "Google Developer Group (GDG) AAMU",
     period: "2023 – Present",
     achievements: [
@@ -287,6 +309,58 @@ export const affiliations = [
   "CodePath",
   "HBCU 20x20 (2023 cohort)",
   "Project Destined",
+];
+
+export const conferences = [
+  {
+    name: "Grace Hopper Celebration (GHC)",
+    year: "2024",
+    location: "Philadelphia, PA",
+    description: "Attended the world's largest gathering of women and non-binary technologists, networking with industry leaders and participating in technical sessions on AI, cloud computing, and career development.",
+    highlights: [
+      "Participated in resume reviews and mock interviews with recruiters from top tech companies",
+      "Attended sessions on AI/ML innovations and emerging technologies",
+      "Connected with engineers from Google, Microsoft, Meta, and other leading companies",
+    ],
+  },
+  {
+    name: "NSBE National Convention",
+    year: "2024",
+    location: "Atlanta, GA",
+    description: "Participated in the National Society of Black Engineers convention, engaging with technical workshops, career fair, and professional development sessions.",
+    highlights: [
+      "Completed technical interviews with multiple Fortune 500 companies",
+      "Attended workshops on system design and software architecture",
+      "Networked with NSBE professionals and fellow engineering students",
+    ],
+  },
+];
+
+export const competitions = [
+  {
+    name: "Sandia National Labs Tracer Fire CTF",
+    year: "2025",
+    placement: "1st Place",
+    teamSize: 5,
+    description: "Led a 5-person team to victory in a competitive cybersecurity capture the flag competition hosted by Sandia National Labs.",
+    highlights: [
+      "Solved real-world cyberattack challenges involving reverse engineering, cryptography, and forensics",
+      "Led team strategy and task delegation across different challenge categories",
+      "Investigated and presented findings, providing a detailed debrief to the SNL team and audience",
+    ],
+  },
+  {
+    name: "AAMU Hackathon",
+    year: "2024",
+    placement: "2nd Place",
+    teamSize: 4,
+    description: "Developed an innovative solution for campus resource management in a 24-hour hackathon competition.",
+    highlights: [
+      "Built a full-stack web application using React and Node.js in 24 hours",
+      "Implemented real-time notifications and user authentication",
+      "Presented solution to panel of judges from local tech companies",
+    ],
+  },
 ];
 
 export const navLinks = [

@@ -22,32 +22,31 @@ export default function Leadership() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-12 text-center">
+          <p className="eyebrow mb-3 text-center">Leadership</p>
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-foreground mb-12 text-center">
             Leadership & Activities
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6">
             {leadership.map((item, index) => (
               <motion.div
                 key={item.role}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-background rounded-lg p-6 shadow-sm border border-border hover:shadow-md transition-shadow"
+                className="border border-border rounded-lg p-6 hover:border-primary/60 transition-colors"
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="p-3 bg-primary/10 rounded-lg">
-                    {item.organization.includes("CTF") ? (
-                      <Trophy className="h-6 w-6 text-primary" />
-                    ) : (
-                      <Users className="h-6 w-6 text-primary" />
-                    )}
-                  </div>
+                <div className="flex items-start gap-3 mb-4">
+                  {item.organization.includes("CTF") ? (
+                    <Trophy className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  ) : (
+                    <Users className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  )}
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-foreground mb-1">
+                    <h3 className="text-lg font-semibold text-foreground mb-1">
                       {item.role}
                     </h3>
-                    <p className="text-primary font-semibold mb-1">
+                    <p className="text-primary font-medium mb-1">
                       {item.organization}
                     </p>
                     <p className="text-sm text-muted-foreground">
@@ -56,14 +55,10 @@ export default function Leadership() {
                   </div>
                 </div>
 
-                <ul className="space-y-2">
+                <ul className="space-y-2 list-disc pl-5 marker:text-primary">
                   {item.achievements.map((achievement, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-2 text-sm text-muted-foreground"
-                    >
-                      <span className="text-primary mt-1 flex-shrink-0">•</span>
-                      <span>{achievement}</span>
+                    <li key={i} className="text-sm text-muted-foreground">
+                      {achievement}
                     </li>
                   ))}
                 </ul>

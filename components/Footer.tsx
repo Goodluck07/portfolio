@@ -14,17 +14,17 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-xl font-bold text-foreground mb-4">
+            <h3 className="font-display text-xl font-semibold text-foreground mb-4">
               {personalInfo.name}
             </h3>
             <p className="text-muted-foreground">
-              {personalInfo.title} passionate about building scalable and
-              impactful software solutions.
+              CS senior at Alabama A&M University, graduating May 2027. Open
+              to new-grad software engineering roles.
             </p>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold text-foreground mb-4">
+            <h4 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-4">
               Quick Links
             </h4>
             <div className="space-y-2">
@@ -56,15 +56,15 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold text-foreground mb-4">
+            <h4 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-4">
               Connect
             </h4>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-background rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="p-3 border border-border rounded-md hover:border-primary hover:text-primary transition-colors"
                 aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
@@ -73,14 +73,14 @@ export default function Footer() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-background rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="p-3 border border-border rounded-md hover:border-primary hover:text-primary transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="p-3 bg-background rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="p-3 border border-border rounded-md hover:border-primary hover:text-primary transition-colors"
                 aria-label="Email"
               >
                 <Mail className="h-5 w-5" />
@@ -97,8 +97,9 @@ export default function Footer() {
 
           <button
             onClick={scrollToTop}
-            className="p-2 bg-background rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+            className="p-2 border border-border rounded-md hover:border-primary hover:text-primary transition-colors"
             aria-label="Scroll to top"
+            suppressHydrationWarning
           >
             <ArrowUp className="h-5 w-5" />
           </button>

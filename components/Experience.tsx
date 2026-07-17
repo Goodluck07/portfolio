@@ -23,30 +23,29 @@ export default function Experience() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-center">
+          <p className="eyebrow mb-3 text-center">Experience</p>
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-foreground mb-4 text-center">
             Work Experience
           </h2>
-          <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            Click on each experience to learn more about my journey, challenges I faced, and the impact I made
+          <p className="text-muted-foreground text-center mb-14 max-w-2xl mx-auto">
+            Each role links to the full story: the problem I walked into, what I built, and what shipped.
           </p>
 
-          <div className="space-y-12">
+          <div className="space-y-6">
             {workExperience.map((job, index) => (
               <motion.div
                 key={job.company}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={
-                  isInView
-                    ? { opacity: 1, x: 0 }
-                    : { opacity: 0, x: index % 2 === 0 ? -20 : 20 }
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
                 }
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
               >
                 <Link href={`/experience/${job.slug}`} className="block group">
-                  <div className="bg-card rounded-lg p-6 sm:p-8 shadow-sm border border-border hover:shadow-lg hover:border-primary/50 transition-all cursor-pointer">
+                  <div className="border border-border rounded-lg p-6 sm:p-8 hover:border-primary/60 transition-colors cursor-pointer">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6">
                       <div className="flex items-start gap-4 mb-4 sm:mb-0">
-                        <div className="relative w-16 h-16 flex-shrink-0 bg-white rounded-lg p-2 shadow-sm border border-border group-hover:shadow-md transition-shadow">
+                        <div className="relative w-14 h-14 flex-shrink-0 bg-white rounded-md p-2 border border-border">
                           <Image
                             src={job.logo}
                             alt={`${job.company} logo`}
@@ -55,10 +54,10 @@ export default function Experience() {
                           />
                         </div>
                         <div>
-                          <h3 className="text-2xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
+                          <h3 className="font-display text-xl font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
                             {job.company}
                           </h3>
-                          <p className="text-lg text-primary font-semibold mb-2">
+                          <p className="text-base text-muted-foreground font-medium mb-2">
                             {job.role}
                           </p>
                           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-muted-foreground">
@@ -75,21 +74,15 @@ export default function Experience() {
                       </div>
                     </div>
 
-                    <ul className="space-y-3 mb-6">
+                    <ul className="space-y-3 mb-6 list-disc pl-5 marker:text-primary">
                       {job.achievements.slice(0, 2).map((achievement, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-3 text-muted-foreground"
-                        >
-                          <span className="text-primary mt-1.5 flex-shrink-0">
-                            •
-                          </span>
-                          <span>{achievement}</span>
+                        <li key={i} className="text-muted-foreground">
+                          {achievement}
                         </li>
                       ))}
                     </ul>
 
-                    <div className="flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+                    <div className="flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all text-sm">
                       <span>Read the full story</span>
                       <ArrowRight className="h-4 w-4" />
                     </div>
