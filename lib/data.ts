@@ -40,16 +40,16 @@ export const workExperience = [
     period: "Jan 2026 – Apr 2026",
     logo: "/images/innovation-portal-logo.png",
     achievements: [
-      "Building ChessBlindspots, an AI-powered chess coach that analyzes chess.com/Lichess games to identify tactical weaknesses and generate personalized practice puzzles",
-      "Architecting full-stack application using React, TypeScript, Stockfish chess engine, and Claude AI for pattern categorization",
-      "Implementing zero-friction UX with no login required and 30-second game analysis using browser localStorage for persistence",
-      "Developing data visualization features using Recharts/D3.js to display tactical weakness patterns and improvement metrics",
+      "Built ChessBlindspots, a chess analysis web app that detects blunders from Chess.com games and converts them into personalized drill puzzles, placing 2nd at the 2026 App Build & Pitch Competition",
+      "Engineered a fully client-side Stockfish + Chess.com API pipeline evaluating chess positions in the browser for 30+ users, eliminating server infrastructure entirely at zero hosting cost",
+      "Architected the full-stack application using React, TypeScript, and the Stockfish chess engine, with Claude AI for pattern categorization",
+      "Built zero-friction UX with no login required and 30-second game analysis using browser localStorage for persistence",
     ],
     story: {
-      overview: "At Innovation Portal, I'm building ChessBlindspots - an AI-powered chess coach that helps players identify and improve their tactical weaknesses. This project combines my passion for chess with cutting-edge AI technology.",
+      overview: "At Innovation Portal, I built ChessBlindspots - a chess analysis tool that helps players identify and improve their tactical weaknesses. The project combined my passion for chess with cutting-edge AI technology, and placed 2nd at the 2026 App Build & Pitch Competition.",
       challenge: "Chess players often struggle to identify patterns in their mistakes. Traditional chess analysis tools show what went wrong in individual games, but they don't help players understand their recurring weaknesses or provide targeted practice.",
-      approach: "I'm architecting a full-stack solution that analyzes a player's game history from chess.com or Lichess, uses the Stockfish engine to identify tactical errors, and leverages Claude AI to categorize these mistakes into learnable patterns. The app then generates personalized puzzles that target the player's specific weaknesses.",
-      impact: "The zero-friction UX (no login required, 30-second analysis) makes improvement accessible to casual players. Early testing shows players can identify their top 3 tactical weaknesses within minutes of using the tool.",
+      approach: "I built a fully client-side solution that analyzes a player's game history from Chess.com, uses the Stockfish engine to identify tactical errors, and leverages Claude AI to categorize these mistakes into learnable patterns. The app then generates personalized puzzles that target the player's specific weaknesses, all running in the browser with zero server infrastructure.",
+      impact: "The zero-friction UX (no login required, 30-second analysis) made improvement accessible to casual players, and the client-side architecture kept hosting costs at zero for 30+ users. The project placed 2nd at the 2026 App Build & Pitch Competition.",
       techDetails: [
         "React + TypeScript for a responsive, type-safe frontend",
         "Stockfish WASM for browser-based chess analysis",
@@ -295,7 +295,7 @@ export const leadership = [
   {
     role: "Team Lead",
     organization: "Sandia National Labs Tracer Fire CTF Hackathon",
-    period: "2025",
+    period: "September 2025",
     achievements: [
       "Led a 5-person team to 1st place in a competitive cybersecurity capture the flag competition",
       "Solved real-world cyberattack challenges involving reverse engineering, cryptography, and forensics",
@@ -313,26 +313,11 @@ export const affiliations = [
 
 export const conferences = [
   {
-    name: "Grace Hopper Celebration (GHC)",
-    year: "2024",
-    location: "Philadelphia, PA",
-    description: "Attended the world's largest gathering of women and non-binary technologists, networking with industry leaders and participating in technical sessions on AI, cloud computing, and career development.",
-    highlights: [
-      "Participated in resume reviews and mock interviews with recruiters from top tech companies",
-      "Attended sessions on AI/ML innovations and emerging technologies",
-      "Connected with engineers from Google, Microsoft, Meta, and other leading companies",
-    ],
-  },
-  {
-    name: "NSBE National Convention",
-    year: "2024",
-    location: "Atlanta, GA",
-    description: "Participated in the National Society of Black Engineers convention, engaging with technical workshops, career fair, and professional development sessions.",
-    highlights: [
-      "Completed technical interviews with multiple Fortune 500 companies",
-      "Attended workshops on system design and software architecture",
-      "Networked with NSBE professionals and fellow engineering students",
-    ],
+    name: "AfroTech",
+    year: "2026",
+    period: "November 2026",
+    status: "upcoming" as const,
+    description: "Attending AfroTech this November to connect with Black engineers, founders, and recruiters from across the industry.",
   },
 ];
 
@@ -340,6 +325,7 @@ export const competitions = [
   {
     name: "Sandia National Labs Tracer Fire CTF",
     year: "2025",
+    period: "September 2025",
     placement: "1st Place",
     teamSize: 5,
     description: "Led a 5-person team to victory in a competitive cybersecurity capture the flag competition hosted by Sandia National Labs.",
@@ -347,18 +333,6 @@ export const competitions = [
       "Solved real-world cyberattack challenges involving reverse engineering, cryptography, and forensics",
       "Led team strategy and task delegation across different challenge categories",
       "Investigated and presented findings, providing a detailed debrief to the SNL team and audience",
-    ],
-  },
-  {
-    name: "AAMU Hackathon",
-    year: "2024",
-    placement: "2nd Place",
-    teamSize: 4,
-    description: "Developed an innovative solution for campus resource management in a 24-hour hackathon competition.",
-    highlights: [
-      "Built a full-stack web application using React and Node.js in 24 hours",
-      "Implemented real-time notifications and user authentication",
-      "Presented solution to panel of judges from local tech companies",
     ],
   },
 ];
@@ -370,5 +344,6 @@ export const navLinks = [
   { name: "Projects", href: "#projects" },
   { name: "Skills", href: "#skills" },
   { name: "Leadership", href: "#leadership" },
+  { name: "Beyond", href: "#beyond" },
   { name: "Contact", href: "#contact" },
 ];

@@ -60,8 +60,8 @@ export default function About() {
                   <span className="text-foreground font-semibold">
                     Innovation Portal
                   </span>
-                  , where I&apos;m currently building a chess coaching tool
-                  that placed 2nd at the 2026 App Build & Pitch Competition.
+                  , where I built a chess coaching tool that placed 2nd at the
+                  2026 App Build & Pitch Competition.
                 </p>
 
                 <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
